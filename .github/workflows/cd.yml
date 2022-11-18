@@ -1,10 +1,10 @@
 # .github/workflows/cd.yml
 
-name: cd
+name: Continuous Deployment
 
 on:
   workflow_run:
-    workflows: ["ci"]
+    workflows: ["Continuous Integration"]
     types:
       - completed
 
@@ -31,6 +31,7 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker stop ${{ secrets.DOCKERHUB_REPO }}
             docker run -d -p 80:80 ${{ steps.meta.outputs.tags }}
+
   telegram:
     needs: deploy
     runs-on: ubuntu-latest

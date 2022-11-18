@@ -1,6 +1,6 @@
 # .github/workflows/ci.yml
 
-name: ci
+name: Continuous Integration
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: 16
 
       - name: Install dependencies
         run: npm install
