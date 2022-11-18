@@ -12,7 +12,19 @@ jobs:
   telegram:
     runs-on: ubuntu-latest
     steps:
-      - name: Telegram Notification
+      - name: Notification on Push
+        if: github.event_name == 'push'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Recent Push by ${{ github.actor }}
+            Commit Message: ${{ github.event.head_commit.message }}
+            Commit link: ${{ github.event.head_commit.url }}
+
+      - name: Notification on PR
+        if: github.event_name == 'pull_request'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
