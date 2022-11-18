@@ -29,9 +29,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            apt install -y docker.io
-            docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker stop ${{ secrets.DOCKERHUB_REPO }}
+            docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker run -d -p 80:80 ${{ steps.meta.outputs.tags }}
 
   telegram:
