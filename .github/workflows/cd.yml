@@ -31,7 +31,7 @@ jobs:
           script: |
             docker stop ${{ secrets.DOCKERHUB_REPO }}
             docker pull ${{ secrets.DOCKERHUB_REPO }}
-            docker run -d -p 80:80 ${{ steps.meta.outputs.tags }}
+            docker run -d ${{ steps.meta.outputs.tags }} -p 80:80 --restart=always --name sample-app
 
   telegram:
     needs: deploy
