@@ -33,5 +33,4 @@ jobs:
             Recent PR by ${{ github.actor }} from ${{ github.head_ref }} to ${{ github.base_ref }}
             PR Title : ${{ github.event.pull_request.title }}
             PR link: ${{ github.event.pull_request.html_url }}
-            Commit link: ${{ github.event.pull_request.head.sha }}
-            Reviewers: @${{ github.event.pull_request.requested_reviewers }}
+            Please review @${{ secrets.OWNER }}
