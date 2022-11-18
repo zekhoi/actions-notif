@@ -32,7 +32,7 @@ jobs:
             docker pull ${{ steps.meta.outputs.tags }}
             docker stop app
             docker system prune -f
-            docker run --name app -p 80:3000 -d ${{ steps.meta.outputs.tags }}
+            docker run --name app -p 8080:3000 -d ${{ steps.meta.outputs.tags }}
 
   telegram:
     needs: deploy
