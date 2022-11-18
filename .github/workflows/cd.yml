@@ -29,8 +29,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            docker pull ${{ steps.meta.outputs.tags }}
             docker stop ${{ secrets.DOCKERHUB_REPO }}
-            docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker run -d ${{ steps.meta.outputs.tags }} -p 80:80 --restart=always --name sample-app
 
   telegram:

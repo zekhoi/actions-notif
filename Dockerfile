@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,7 +13,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 3000
+# Show directory contents
+RUN ls -l
 
 # Start Node server
 CMD [ "npm", "start" ]
