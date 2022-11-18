@@ -1,6 +1,6 @@
 # .github/workflows/telegram.yml
 
-name: Telegram Notification Kok Gak Bisa
+name: Notify Owner
 
 on:
   push:
@@ -30,6 +30,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Recent PR by ${{ github.actor }}
-            Commit Message: ${{ github.event.head_commit.message }}
+            PR Title : ${{ github.event.pull_request.title }}
             PR link: ${{ github.event.pull_request.html_url }}
             Please review @zekhoi
