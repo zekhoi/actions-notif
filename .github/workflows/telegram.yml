@@ -20,5 +20,5 @@ jobs:
           message: |
             Recent activity \n
             ${{ github.event_name }} ${{ github.ref }} by @${{ github.actor }} \n
-            ${{ github.event.${{ github.event_name }}.html_url }} \n
+            ${{ github.event.push.html_url }}
             ${{ github.event.head_commit.message }}
