@@ -18,6 +18,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Recent ${{ github.event_name }} ${{ github.ref }} by ${{ github.actor }}
+            Recent PR by ${{ github.actor }}
             Commit Message: ${{ github.event.head_commit.message }}
+            PR link: ${{ github.event.pull_request.html_url }}
             Please review @zekhoi
