@@ -57,6 +57,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          disable_web_page_preview: true
           message: |
             Recent Push by ${{ github.actor }} on ${{ github.repository }}.
 
@@ -70,10 +71,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          disable_web_page_preview: true
           message: |
-            Recent PR by ${{ github.actor }} from ${{ github.head_ref }} to ${{ github.base_ref }}
+            Recent PR by **${{ github.actor }}** from **${{ github.head_ref }}** to **${{ github.base_ref }}**
 
-            PR Title : ${{ github.event.pull_request.title }}
+            PR Title : **${{ github.event.pull_request.title }}**
 
             PR link: ${{ github.event.pull_request.html_url }}
 
