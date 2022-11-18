@@ -28,7 +28,7 @@ jobs:
             apt install -y docker.io
             docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker stop ${{ secrets.DOCKERHUB_REPO }}
-            docker run -d -p 80:80 --name ${{ secrets.DOCKERHUB_REPO }} ${{ secrets.DOCKERHUB_REPO }}:${{ steps.meta.outputs.tags }}
+            docker run -d -p 80:80 --name ${{ secrets.DOCKERHUB_REPO }} ${{ steps.meta.outputs.tags }}
   telegram:
     needs: deploy
     runs-on: ubuntu-latest
