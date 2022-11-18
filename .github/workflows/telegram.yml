@@ -21,6 +21,7 @@ jobs:
           message: |
             Recent Push by ${{ github.actor }} on ${{ github.repository }}.
             Message: ${{ github.event.head_commit.message }}
+            Link: ${{ github.event.head_commit.url }}
 
       - name: Notification on PR
         if: github.event_name == 'pull_request'
