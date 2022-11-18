@@ -2,9 +2,7 @@
 
 name: Logs
 
-on:
-  push:
-    branches: "**"
+on: push
 
 jobs:
   telegram:
@@ -16,7 +14,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_LOGS }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Recent ${{ github.event_name }} on branch ${{ github.ref }}
+            Recent ${{ github.event_name }} on branch ${{ github.ref }} 
             Commit author: ${{ github.event.head_commit.author.name }}
             Commit message: ${{ github.event.head_commit.message }}
             Commit URL: ${{ github.event.head_commit.url }}
