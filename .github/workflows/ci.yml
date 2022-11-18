@@ -1,6 +1,6 @@
-# .github/workflows/telegram.yml
+# .github/workflows/ci.yml
 
-name: CI/CD
+name: ci
 
 on:
   push:

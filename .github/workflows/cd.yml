@@ -1,0 +1,37 @@
+# .github/workflows/cd.yml
+
+name: cd
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            apt install -y docker.io
+            docker pull ${{ secrets.DOCKERHUB_REPO }}
+            docker stop ${{ secrets.DOCKERHUB_REPO }}
+            docker run -d -p 80:80 --name ${{ secrets.DOCKERHUB_REPO }} ${{ secrets.DOCKERHUB_REPO }}
+  telegram:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notification on Deploy
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Recent Deploy by ${{ github.actor }} with ${{ github.repository }}
+            Preview : http://${{ secrets.SSH_HOST }}
