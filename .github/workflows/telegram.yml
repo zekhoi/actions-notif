@@ -1,6 +1,6 @@
 # .github/workflows/telegram.yml
 
-name: Telegram Notification
+name: Telegram Notification Kok Gak Bisa
 
 on:
   push:
