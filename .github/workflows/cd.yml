@@ -10,6 +10,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ secrets.DOCKERHUB_REPO }}
+
       - uses: actions/checkout@v2
       - name: Deploy Using ssh
         uses: appleboy/ssh-action@master
@@ -22,7 +28,7 @@ jobs:
             apt install -y docker.io
             docker pull ${{ secrets.DOCKERHUB_REPO }}
             docker stop ${{ secrets.DOCKERHUB_REPO }}
-            docker run -d -p 80:80 --name ${{ secrets.DOCKERHUB_REPO }} ${{ secrets.DOCKERHUB_REPO }}
+            docker run -d -p 80:80 --name ${{ secrets.DOCKERHUB_REPO }} ${{ secrets.DOCKERHUB_REPO }}:${{ steps.meta.outputs.tags }}
   telegram:
     needs: deploy
     runs-on: ubuntu-latest
