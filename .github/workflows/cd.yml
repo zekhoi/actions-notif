@@ -30,9 +30,9 @@ jobs:
           port: 22
           script: |
             docker pull ${{ steps.meta.outputs.tags }}
-            docker stop ${{ secrets.DOCKERHUB_REPO }}
+            docker stop app
             docker system prune -f
-            docker run -p 80:3000 -d ${{ steps.meta.outputs.tags }}
+            docker run --name app -p 80:3000 -d ${{ steps.meta.outputs.tags }}
 
   telegram:
     needs: deploy
