@@ -59,7 +59,9 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Recent Push by ${{ github.actor }} on ${{ github.repository }}.
+
             Message: ${{ github.event.head_commit.message }}
+
             Link: ${{ github.event.head_commit.url }}
 
       - name: Notification on PR
@@ -70,6 +72,9 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Recent PR by ${{ github.actor }} from ${{ github.head_ref }} to ${{ github.base_ref }}
+
             PR Title : ${{ github.event.pull_request.title }}
+
             PR link: ${{ github.event.pull_request.html_url }}
+
             Please review @${{ secrets.OWNER }}
