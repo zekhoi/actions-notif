@@ -1,0 +1,20 @@
+# .github/workflows/logs.yml
+
+name: Logs
+
+on: push
+
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notification Log
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_LOG }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Recent event: ${{ github.event_name }}
+            Commit link: ${{ github.event.head_commit.url }}
+            Commit message: ${{ github.event.head_commit.message }}
+            Commit author: ${{ github.event.head_commit.author.name }}
