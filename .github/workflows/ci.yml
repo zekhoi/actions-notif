@@ -3,11 +3,9 @@
 name: Continuous Integration
 
 on:
-  push:
-    branches: ["master"]
   pull_request:
     branches: ["master"]
-    types: [opened, reopened]
+    types: [opened]
 
 jobs:
   build:
@@ -51,20 +49,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Notification on Push
-        if: github.event_name == 'push'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          disable_web_page_preview: true
-          message: |
-            Recent Push by ${{ github.actor }} on ${{ github.repository }}.
-
-            Message: ${{ github.event.head_commit.message }}
-
-            Link: ${{ github.event.head_commit.url }}
-
       - name: Notification on PR
         if: github.event_name == 'pull_request'
         uses: appleboy/telegram-action@master
