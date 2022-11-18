@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Recent Push by ${{ github.actor }} on ${{ github.repository }}.
-            Commit Message: ${{ github.event.head_commit.message }}
+            Message: ${{ github.event.head_commit.message }}
 
       - name: Notification on PR
         if: github.event_name == 'pull_request'
@@ -29,7 +29,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Recent PR by ${{ github.actor }} from ${{ github.head_ref }} to ${{ github.base_ref }}.
+            Recent PR by ${{ github.actor }} from ${{ github.head_ref }} to ${{ github.base_ref }}
             PR Title : ${{ github.event.pull_request.title }}
             PR link: ${{ github.event.pull_request.html_url }}
             Please review @${{ secrets.OWNER }}
