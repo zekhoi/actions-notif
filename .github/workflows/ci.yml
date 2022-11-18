@@ -9,7 +9,22 @@ on:
     branches: ["master"]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm test
+
   telegram:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Notification on Push
